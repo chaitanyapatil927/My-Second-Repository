@@ -1,15 +1,25 @@
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose');
 
 
 
-//Middleware 
+//importing Middleware 
 const morgan = require('morgan');
 const bodyparser = require('body-parser');
 
 //importing routes
 const productRoutes = require('./bin/routes/products');
 const orderRoutes = require('./bin/routes/orders');
+
+//mongo
+mongoose.connect(
+    'mongodb+srv://chaitanyapatil927:' + process.env.MONGO_ATLAS_PW + '@node-rest-codeblog-9hddi.mongodb.net/test?retryWrites=true&w=majority',
+    {
+        useMongoClient: true
+    }
+);
+mongoose.Promise = global.Promise;
 
 
 //using middleware
